@@ -23,12 +23,22 @@ module.exports = function(grunt) {
         additionalSuffixes: ['.ios.js']
       },
       all: ['./']
+    },
+    eslint: {
+      options: {
+        config: '.eslintrc',
+        ignores: ['./**/node_modules'],
+        additionalSuffixes: ['.ios.js']
+      },
+      all: ['./']
     }
   });
 
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-jsxhint');
-  
+  grunt.loadNpmTasks('eslint-plugin-react');  
+
+
   /* Build Tasks */
   grunt.registerTask('build-web', ['shell:build-web']);
   grunt.registerTask('build-app', ['shell:build-app']);
@@ -36,5 +46,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['build-web', 'build-app']);
 
   /* Testing */
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('test', ['eslint']);
 };
+
