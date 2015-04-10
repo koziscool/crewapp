@@ -26,17 +26,15 @@ module.exports = function(grunt) {
     },
     eslint: {
       options: {
-        config: '.eslintrc',
-        ignores: ['./**/node_modules'],
-        additionalSuffixes: ['.ios.js']
+        eslintrc: '.eslintrc',
       },
-      all: ['./']
+      target: ['./app/index.ios.js']
     }
   });
 
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-jsxhint');
-  grunt.loadNpmTasks('eslint-plugin-react');  
+  grunt.loadNpmTasks('grunt-eslint');  
 
 
   /* Build Tasks */
@@ -46,6 +44,5 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['build-web', 'build-app']);
 
   /* Testing */
-  grunt.registerTask('test', ['eslint']);
+  grunt.registerTask('test', ['jshint', 'eslint']);
 };
-
